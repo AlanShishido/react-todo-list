@@ -1,0 +1,6 @@
+.app {
+    max-width: 46rem; /* 736 / 16 px = 46 rem */
+    width: 100%;
+
+    margin: 0 auto;
+}
