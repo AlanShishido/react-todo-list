@@ -1,15 +1,42 @@
 .list {
     display: flex;
-}
-
-.tasksList {
-    display: flex;
     flex-direction: column;
     gap: 1.5rem;
-  }
-  
-  .tasksList > div {
+}
+
+.list header {
     display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list header aside {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  font-weight: bold;
+}
+
+.list header aside p {
+  color: var(--blue);
+  font-size: 0.875rem;
+}
+
+.list header aside span {
+  color: var(--purple);
+  padding: 2px 8px;
+  border-radius: 16px;
+
+  font-size: 0.75rem;
+
+  color: var(--gray-200);
+  background-color: var(--gray-400);
+}
+
+.list > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
