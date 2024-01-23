@@ -1,14 +1,31 @@
-import { Trash } from '@phosphor-icons/react'
+import { Check, Trash } from '@phosphor-icons/react'
 import styles from './Task.module.css'
 
-export function Task () {
+interface TaskProps {
+    isChecked?: boolean
+}
+
+export function Task ({ isChecked=true }: TaskProps) {
+    const checkboxCheckedClassname = isChecked
+    ? styles['checkbox-checked']
+    : styles['checkbox-unchecked']
+
+    const paragraphCheckedClassname = isChecked
+        ? styles['paragraph-checked']
+        : ''
+
     return (
         <div className={styles.task}>
             <div>
                 <label htmlFor="checkbox">
                     <input readOnly type="checkbox" />
+                    <span className={`${styles.checkbox} ${checkboxCheckedClassname}`}>
+                        <Check size={12}/>
+                    </span>
 
-                    <p>Conteudo da tarefa a ser concluida</p>
+                    <p className={paragraphCheckedClassname}>
+                        Conteudo da tarefa a ser concluida
+                    </p>
                 </label>
             </div>
             <button>

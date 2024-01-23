@@ -1,3 +1,4 @@
+import { Empty } from './Empty'
 import styles from './List.module.css'
 import { Task } from './Task'
 
@@ -15,14 +16,17 @@ export function List () {
                     <span>0 de 4</span>
                 </aside>
             </header>
+            
+            <div>
+                <Task />
+                <Task />
+                <Task />
+                <Task />
+                <Task />
+                <Task />
+            </div>
 
-            <Task />
-            <Task />
-            <Task />
-            <Task />
-            <Task />
-            <Task />
-            <Task />
+            <Empty />
 
         </div>
     ) 
