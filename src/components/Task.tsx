@@ -3,9 +3,10 @@ import styles from './Task.module.css'
 
 interface TaskProps {
     isChecked?: boolean
+    text: string
 }
 
-export function Task ({ isChecked=true }: TaskProps) {
+export function Task ({ isChecked=false, text }: TaskProps) {
     const checkboxCheckedClassname = isChecked
     ? styles['checkbox-checked']
     : styles['checkbox-unchecked']
@@ -24,7 +25,7 @@ export function Task ({ isChecked=true }: TaskProps) {
                     </span>
 
                     <p className={paragraphCheckedClassname}>
-                        Conteudo da tarefa a ser concluida
+                        {text}
                     </p>
                 </label>
             </div>

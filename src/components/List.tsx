@@ -2,7 +2,13 @@ import { Empty } from './Empty'
 import styles from './List.module.css'
 import { Task } from './Task'
 
-export function List () {
+interface ListProps {
+    id: number,
+    text: string,
+    isChecked: boolean
+}
+
+export function List(tasks: ListProps[]) {
     return (
         <div className={styles.list}>
             <header>
@@ -18,12 +24,16 @@ export function List () {
             </header>
             
             <div>
-                <Task />
-                <Task />
-                <Task />
-                <Task />
-                <Task />
-                <Task />
+                {tasks.map((task) => {
+                    return (
+                        <Task isChecked={task.isChecked} text={task.text} />
+                    )
+                })}
+                <Task text="tarefa 1" isChecked/>
+                <Task text="tarefa 2"/>
+                <Task text="tarefa 3"/>
+                <Task text="tarefa 4"/>
+                <Task text="tarefa 5"/>
             </div>
 
             <Empty />
