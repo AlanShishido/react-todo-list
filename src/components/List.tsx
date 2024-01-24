@@ -1,43 +1,55 @@
 import { Empty } from './Empty'
 import styles from './List.module.css'
 import { Task } from './Task'
+import { TaskData } from '../App'
+
 
 interface ListProps {
-    id: number,
-    text: string,
-    isChecked: boolean
+    taskList: TaskData[],
+    setTaskList: React.Dispatch<React.SetStateAction<TaskData[]>>
 }
 
-export function List(tasks: ListProps[]) {
+export function List({taskList, setTaskList}: ListProps){
+    const totalTasks = taskList.length
+
+    function toggleTaskCheck({ id }:{id: number}) {
+        const updatedTasks = taskList.map((task) => {
+            if (task.id === id) {
+                return { ...task, isChecked: !task.isChecked }
+              }
+        
+              return { ...task }
+        })
+
+        setTaskList(updatedTasks)
+    }
+
     return (
         <div className={styles.list}>
             <header>
                 <aside>
                     <p>Tarefas criadas</p>
-                    <span>0</span>
+                    <span>{totalTasks}</span>
                 </aside>
 
                 <aside>
                     <p>Concluídas</p>
-                    <span>0 de 4</span>
+                    <span>0 de {totalTasks}</span>
                 </aside>
             </header>
             
-            <div>
-                {tasks.map((task) => {
-                    return (
-                        <Task isChecked={task.isChecked} text={task.text} />
-                    )
-                })}
-                <Task text="tarefa 1" isChecked/>
-                <Task text="tarefa 2"/>
-                <Task text="tarefa 3"/>
-                <Task text="tarefa 4"/>
-                <Task text="tarefa 5"/>
-            </div>
-
-            <Empty />
-
+            {totalTasks > 0 ? (
+                <div>
+                    {taskList.map((task) => {
+                        return (
+                            <Task key={task.id}
+                                data={task}
+                                toggleTaskCheck={toggleTaskCheck}
+                            />
+                        )
+                    })}
+                </div>
+            ) : ( <Empty /> )}
         </div>
     ) 
 }
