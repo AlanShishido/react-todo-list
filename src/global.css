@@ -9,10 +9,12 @@
     --gray-600: #1A1A1A;
     --gray-700: #0D0D0D;
 
-    --blue-dark: #1E6F9F;
     --blue: #4EA8DE;
-    --purple-dark: #5E60CE;
+    --blue-dark: #1e709f;
+    --blue-dark-20: #1e709f51;
+
     --purple: #8284FA;
+    --purple-dark: #5E60CE;
 
     --danger: #E25858;
 

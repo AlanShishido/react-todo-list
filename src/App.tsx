@@ -13,25 +13,17 @@ export interface TaskData {
 }
 
 export function App() {
-  const [taskList, setTaskList] = useState<TaskData[]>([
-    {
-      id: 1,
-      text: 'tarefa 1',
-      isChecked: false
-    },
-    {
-      id: 2,
-      text: 'tarefa 2',
-      isChecked: true
-    }
-  ])
+  const [taskList, setTaskList] = useState<TaskData[]>([])
 
   return (
     <main>
       <Header />
 
       <div className={styles.app}>
-        <NewTask /> 
+        <NewTask 
+          taskList={taskList}
+          setTaskList={setTaskList}
+        /> 
         
         <List 
           taskList={taskList}

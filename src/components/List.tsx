@@ -11,8 +11,15 @@ interface ListProps {
 
 export function List({taskList, setTaskList}: ListProps){
     const totalTasks = taskList.length
+    const checkedTasks = taskList.reduce((prevValue, currentTask) => {
+        if (currentTask.isChecked) {
+          return prevValue + 1
+        }
+    
+        return prevValue
+      }, 0)
 
-    function toggleTaskCheck({ id }:{id: number}) {
+    function handleToggleTask({ id }:{id: number}) {
         const updatedTasks = taskList.map((task) => {
             if (task.id === id) {
                 return { ...task, isChecked: !task.isChecked }
@@ -23,18 +30,28 @@ export function List({taskList, setTaskList}: ListProps){
 
         setTaskList(updatedTasks)
     }
+    
+    function handleRemoveTask(id: number) {
+        const filteredTasks = taskList.filter((task) => task.id !== id)
+
+        if (!confirm('Deseja mesmo apagar essa tarefa?')) {
+        return
+        }
+
+        setTaskList(filteredTasks)
+    }
 
     return (
         <div className={styles.list}>
             <header>
-                <aside>
+                <aside className={styles.createdTasks}>
                     <p>Tarefas criadas</p>
                     <span>{totalTasks}</span>
                 </aside>
 
-                <aside>
+                <aside className={styles.doneTasks}>
                     <p>Concluídas</p>
-                    <span>0 de {totalTasks}</span>
+                    <span>{checkedTasks} de {totalTasks}</span>
                 </aside>
             </header>
             
@@ -44,7 +61,8 @@ export function List({taskList, setTaskList}: ListProps){
                         return (
                             <Task key={task.id}
                                 data={task}
-                                toggleTaskCheck={toggleTaskCheck}
+                                toggleTaskCheck={handleToggleTask}
+                                removeTask={handleRemoveTask}
                             />
                         )
                     })}

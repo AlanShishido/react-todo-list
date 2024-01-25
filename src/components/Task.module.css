@@ -33,7 +33,8 @@
   height: 1.125rem;
   width: 1.125rem;
   border-radius: 100%;
-  transition: 0.2s all;
+  transition: 0.1s all;
+  color: var(--gray-100);
 }
 
 .checkbox-unchecked {
@@ -41,7 +42,8 @@
 }
 
 .checkbox-unchecked:hover {
-  background-color: rgba(30, 111, 159, 0.2);
+  border: 2px solid var(--blue-dark);
+  background-color: var(--blue-dark-20);
 }
 
 .checkbox-checked {
@@ -58,13 +60,17 @@
   font-size: 0.875rem;
   line-height: 140%;
   user-select: none;
-
+  
   transition: 0.2s all;
 }
 
 .paragraph-checked {
   text-decoration: line-through;
   color: var(--gray-300);
+}
+
+.paragraph-unchecked {
+  color: var(--gray-100);
 }
 
 .task button {

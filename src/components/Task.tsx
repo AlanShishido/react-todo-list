@@ -5,23 +5,24 @@ import { TaskData } from '../App'
 interface TaskProps {
     data: TaskData,
     toggleTaskCheck: ({id}:{id:number}) => void,
+    removeTask: (id:number) => void,
 }
 
-export function Task ({ data, toggleTaskCheck }: TaskProps) {
+export function Task ({ data, toggleTaskCheck, removeTask }: TaskProps) {
     const checkboxCheckedClassname = data.isChecked
     ? styles['checkbox-checked']
     : styles['checkbox-unchecked']
 
     const paragraphCheckedClassname = data.isChecked
         ? styles['paragraph-checked']
-        : ''
+        : styles['paragraph-unchecked']
 
     function handleTaskToggle(){
         toggleTaskCheck({id: data.id})
     }
 
     function handleDeleteTask(){
-        // Continuar daqui
+        removeTask(data.id)
     }
         
     return (
@@ -30,11 +31,11 @@ export function Task ({ data, toggleTaskCheck }: TaskProps) {
                 <label htmlFor="checkbox" onClick={handleTaskToggle}>
                     <input readOnly type="checkbox" checked={data.isChecked}/>
                     <span className={`${styles.checkbox} ${checkboxCheckedClassname}`}>
-                        <Check size={12}/>
+                        {data.isChecked && <Check size={12} />}
                     </span>
 
                     <p className={paragraphCheckedClassname}>
-                        {data.id}:{data.text}
+                        {data.text}
                     </p>
                 </label>
             </div>
